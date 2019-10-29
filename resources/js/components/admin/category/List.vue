@@ -23,9 +23,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>Presto</td>
-                  <td>Opera 9.0</td>
+                <tr v-for="(category,index) in getallCategory" :key="category.id">
+                  <td>{{index+1}}</td>
+                  <td>{{category.cat_name}}</td>
                   <td>
                       <a href="">Edit</a>
                       <a href="">Delete</a>
@@ -44,7 +44,18 @@
 <script>
 
     export default {
-       
+       name: "List",
+       mounted(){
+         this.$store.dispatch("allCategory")
+       },
+         computed:{
+           getallCategory(){
+             return this.$store.getters.getCategory
+           }
+         },
+         methods:{
+
+         }
       
     }
 </script>
