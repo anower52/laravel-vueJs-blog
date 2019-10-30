@@ -18,7 +18,7 @@ export const routes = [
         component: AddCategory
     },
     {
-        path: '/edit-category',
+        path: '/edit-category/:categoryid',
         component: EditCategory
     },
 ]
