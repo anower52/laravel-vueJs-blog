@@ -1923,15 +1923,15 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
-    addCategory: function addCategory() {
+    updateCategory: function updateCategory() {
       var _this2 = this;
 
-      this.form.post('/add-category').then(function (response) {
+      this.form.post("/update-category/".concat(this.$route.params.categoryid)).then(function (response) {
         _this2.$router.push('/category-list');
 
         Toast.fire({
           type: 'success',
-          title: 'Category Added successfully'
+          title: 'Category Update successfully'
         });
       })["catch"](function () {});
     }
@@ -59827,9 +59827,9 @@ var render = function() {
               {
                 attrs: { role: "form" },
                 on: {
-                  click: function($event) {
+                  submit: function($event) {
                     $event.preventDefault()
-                    return _vm.addCategory()
+                    return _vm.updateCategory()
                   }
                 }
               },
@@ -59857,7 +59857,7 @@ var render = function() {
                           "is-invalid": _vm.form.errors.has("cat_name")
                         },
                         attrs: {
-                          type: "email",
+                          type: "text",
                           id: "categoryId",
                           placeholder: "Enter category Name",
                           name: "cat_name"
@@ -60107,7 +60107,7 @@ var render = function() {
                           "is-invalid": _vm.form.errors.has("cat_name")
                         },
                         attrs: {
-                          type: "email",
+                          type: "text",
                           id: "categoryId",
                           placeholder: "Enter category Name",
                           name: "cat_name"

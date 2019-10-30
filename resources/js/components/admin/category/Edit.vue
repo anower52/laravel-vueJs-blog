@@ -7,11 +7,11 @@
                   <div class="card-header">
                     <h3 class="card-title">Edit Category</h3>
                   </div>
-                    <form role="form" @click.prevent="addCategory()">
+                    <form role="form" @submit.prevent="updateCategory()">
                       <div class="card-body">
                         <div class="form-group">
                           <label for="categoryId">Edit Category</label>
-                          <input type="email" class="form-control" id="categoryId" placeholder="Enter category Name"
+                          <input type="text" class="form-control" id="categoryId" placeholder="Enter category Name"
                           v-model="form.cat_name"
                           name="cat_name" :class="{ 'is-invalid': form.errors.has('cat_name') }">
                           <has-error :form="form" field="cat_name"></has-error>
@@ -46,14 +46,14 @@
             })
        },
        methods:{
-         addCategory(){
-           this.form.post('/add-category')
+         updateCategory(){
+           this.form.post(`/update-category/${this.$route.params.categoryid}`)
            .then((response)=>{
               this.$router.push('/category-list')
 
              Toast.fire({
                         type: 'success',
-                        title: 'Category Added successfully'
+                        title: 'Category Update successfully'
                       })
            })
            .catch(()=>{

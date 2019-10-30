@@ -11,7 +11,7 @@
                       <div class="card-body">
                         <div class="form-group">
                           <label for="categoryId">Category Name</label>
-                          <input type="email" class="form-control" id="categoryId" placeholder="Enter category Name"
+                          <input type="text" class="form-control" id="categoryId" placeholder="Enter category Name"
                           v-model="form.cat_name"
                           name="cat_name" :class="{ 'is-invalid': form.errors.has('cat_name') }">
                           <has-error :form="form" field="cat_name"></has-error>
