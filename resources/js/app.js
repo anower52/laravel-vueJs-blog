@@ -11,6 +11,9 @@ const store = new Vuex.Store(
     storeData
 )
 
+//moment js
+import {filter} from './filter'
+
 //vue router
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
@@ -30,6 +33,7 @@ window.Form = Form;
 
 // Sweet alert 2
 import Swal from 'sweetalert2'
+import { format } from 'util';
 
 window.Swal = Swal;
 const Toast = Swal.mixin({
