@@ -8,7 +8,7 @@
               <h3 class="card-title">Post list</h3>
                <div class="card-tools">
                    <button class="btn btn-primary">
-                     <router-link to="/add-category" style="color:#fff">Add Post</router-link>
+                     <router-link to="/add-post" style="color:#fff">Add Post</router-link>
                    </button>
                </div>
             </div>
@@ -27,7 +27,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="(post,index) in allpost">
+                <tr v-for="(post,index) in allpost" :key="post.id">
                   <td>{{index+1}}</td>
                   <td v-if="post.user">{{post.user.name}}</td>
                   <td v-if="post.category">{{post.category.cat_name}}</td>
