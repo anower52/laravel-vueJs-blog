@@ -4648,7 +4648,11 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.getters.getAllpost;
     }
   },
-  methods: {}
+  methods: {
+    postImage: function postImage(img) {
+      return "uploadimage/" + img;
+    }
+  }
 });
 
 /***/ }),
@@ -4743,14 +4747,24 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var file = event.target.files[0];
-      var reader = new FileReader();
 
-      reader.onload = function (event) {
-        _this.form.photo = event.target.result;
-        console.log(event.target.result);
-      };
+      if (file.size > 1048576) {
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!',
+          footer: '<a href>Why do I have this issue?</a>'
+        });
+      } else {
+        var reader = new FileReader();
 
-      reader.readAsDataURL(file);
+        reader.onload = function (event) {
+          _this.form.photo = event.target.result;
+          console.log(event.target.result);
+        };
+
+        reader.readAsDataURL(file);
+      }
     },
     addnewPost: function addnewPost() {
       var _this2 = this;
@@ -77391,7 +77405,7 @@ var render = function() {
                         _c("td", [
                           _c("img", {
                             attrs: {
-                              src: post.photo,
+                              src: _vm.postImage(post.photo),
                               alt: "fdgh",
                               width: "70",
                               height: "70"
@@ -77441,9 +77455,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("td", [
-      _c("a", [_vm._v("Edit")]),
+      _c("a", { attrs: { href: "" } }, [_vm._v("Edit")]),
       _vm._v(" "),
-      _c("a", [_vm._v("Delete")])
+      _c("a", { attrs: { href: "" } }, [_vm._v("Delete")])
     ])
   }
 ]

@@ -33,10 +33,10 @@
                   <td v-if="post.category">{{post.category.cat_name}}</td>
                   <td>{{post.title | sortlength(30, "...")}}</td>
                   <td>{{post.description |sortlength(40,"...")}}</td>
-                  <td><img :src="post.photo" alt="fdgh" width="70" height="70"></td>
+                  <td><img :src="postImage(post.photo)" alt="fdgh" width="70" height="70"></td>
                   <td>
-                      <a >Edit</a>
-                      <a >Delete</a>
+                      <a href="">Edit</a>
+                      <a href="">Delete</a>
                   </td>
                 </tr>
                 </tbody>
@@ -61,7 +61,9 @@
             }
         },
         methods:{
-
+          postImage(img){
+            return "uploadimage/"+img;
+          }
         }
     }
 </script>

@@ -79,15 +79,23 @@
         methods:{
           changePhoto(event){
             let file = event.target.files[0];
-            let reader = new FileReader();
+              if(file.size>1048576){
+                  Swal.fire({
+                      type: 'error',
+                      title: 'Oops...',
+                      text: 'Something went wrong!',
+                      footer: '<a href>Why do I have this issue?</a>'
+                    })
+              }else{
+                  let reader = new FileReader();
+                    reader.onload = event=> {
+                        this.form.photo = event.target.result
 
-             reader.onload = event=> {
-                this.form.photo = event.target.result
+                        console.log(event.target.result)
+                    };
+                    reader.readAsDataURL(file);
+                }
 
-                console.log(event.target.result)
-            };
-
-            reader.readAsDataURL(file);
           },
           addnewPost(){
             this.form.post('/savepost')
