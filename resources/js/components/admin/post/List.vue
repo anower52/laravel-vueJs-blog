@@ -36,7 +36,7 @@
                   <td><img :src="postImage(post.photo)" alt="fdgh" width="70" height="70"></td>
                   <td>
                       <a href="">Edit</a>
-                      <a href="">Delete</a>
+                      <a href="" @click.prevent = "deletePost(post.id)">Delete</a>
                   </td>
                 </tr>
                 </tbody>
@@ -63,6 +63,19 @@
         methods:{
           postImage(img){
             return "uploadimage/"+img;
+          },
+          deletePost(id){
+            axios.get('/delete/'+id)
+              .then(()=>{
+                this.$store.dispatch("getAllpost")
+                  Toast.fire({
+                        type: 'success',
+                        title: 'Post deleted successfully'
+                      })
+              })
+              .catch(()=>{
+                
+              })
           }
         }
     }
